@@ -59,11 +59,24 @@ public class App {
 //            person.getItems().forEach(i -> i.setOwner(null));
 
 //            change owner
-            Person person = currentSession.get(Person.class, 4);
-            Item item = currentSession.get(Item.class, 1);
-            item.getOwner().getItems().remove(item);
-            item.setOwner(person);
-            person.getItems().add(item);
+//            Person person = currentSession.get(Person.class, 4);
+//            Item item = currentSession.get(Item.class, 1);
+//            item.getOwner().getItems().remove(item);
+//            item.setOwner(person);
+//            person.getItems().add(item);
+
+//            test cascading
+//            Person person = new Person("test_cascading", 33);
+//            Item item = new Item("test_cascading_item", person);
+//            person.setItems(new ArrayList<>(Collections.singletonList(item)));
+//            currentSession.persist(person);
+
+//            simplify test cascading
+            Person person = new Person("test_cascading", 33);
+            person.addItem(new Item("Item1"));
+            person.addItem(new Item("Item2"));
+            person.addItem(new Item("Item3"));
+            currentSession.persist(person);
 
             currentSession.getTransaction().commit();
         } finally {
